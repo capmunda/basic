@@ -6,14 +6,14 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_015ioz0" messageRef="Message_1979r4c" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0rxoq8w" sourceRef="StartEvent_1" targetRef="Task_0ieficd" />
-    <bpmn:sendTask id="Task_0ieficd" name="inform me about the question" camunda:class="com.cap.camunda.msone.demo.delegates.LoggerDelegate">
+    <bpmn:sendTask id="Task_0ieficd" name="inform me about the question" camunda:class="com.camunda.delegates.LoggerDelegate">
       <bpmn:incoming>SequenceFlow_0rxoq8w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0bxqdd3</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_0bxqdd3" sourceRef="Task_0ieficd" targetRef="Task_05zuldu" />
     <bpmn:endEvent id="EndEvent_1eu7k6d" name="Ask Google">
       <bpmn:incoming>SequenceFlow_04xh087</bpmn:incoming>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_07856ur" messageRef="Message_0idzbqe" camunda:class="com.cap.camunda.msone.demo.delegates.MessageDelegate" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_07856ur" messageRef="Message_0idzbqe" camunda:class="com.camunda.delegates.MessageDelegate" />
     </bpmn:endEvent>
     <bpmn:userTask id="Task_043khjq" name="Answer The question">
       <bpmn:incoming>SequenceFlow_0ugki49</bpmn:incoming>
