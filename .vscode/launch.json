@@ -9,6 +9,16 @@
             "mainClass": "com.cap.camunda.msone.demo.DemoApplication",
             "projectName": "demo",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MessageThrowCatchApplication<message-throw-catch>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.demo.message.MessageThrowCatchApplication",
+            "projectName": "message-throw-catch",
+            "args": ""
         }
     ]
 }
