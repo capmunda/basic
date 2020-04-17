@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0vik9le" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:collaboration id="Collaboration_L6BaseRating">
+    <bpmn:participant id="Participant_08ye562" name="Base Rating" processRef="Process_1oyes63" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_1oyes63" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_L6BR" name="start rating">
+      <bpmn:outgoing>SequenceFlow_1yuvftn</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1yuvftn" sourceRef="StartEvent_L6BR" targetRef="ServiceTask_L6BR_MapDWFreference" />
+    <bpmn:sequenceFlow id="SequenceFlow_0z317v6" sourceRef="ServiceTask_L6BR_MapDWFreference" targetRef="IntermediateThrowEvent_L6BR_statusInit" />
+    <bpmn:sequenceFlow id="SequenceFlow_0xzo10s" sourceRef="ServiceTask_L6BR_CopyDCrating" targetRef="ServiceTask_L6BR_UpdateDCreferenceinDWF" />
+    <bpmn:sequenceFlow id="SequenceFlow_18v2hi5" sourceRef="IntermediateThrowEvent_L6BR_statusInit" targetRef="ServiceTask_L6BR_CopyDCrating" />
+    <bpmn:sequenceFlow id="SequenceFlow_0jmk6h6" sourceRef="IntermediateThrowEvent_L6BR_statusComp" targetRef="EndEvent_L6BR" />
+    <bpmn:sequenceFlow id="SequenceFlow_0fdpxfq" sourceRef="ServiceTask_L6BR_UpdateDCreferenceinDWF" targetRef="IntermediateThrowEvent_L6BR_statusComp" />
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_L6BR_statusInit" name="status: Init">
+      <bpmn:incoming>SequenceFlow_0z317v6</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18v2hi5</bpmn:outgoing>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:serviceTask id="ServiceTask_L6BR_UpdateDCreferenceinDWF" name="Update DC reference in DWF" camunda:type="external" camunda:topic="UpdateDCreferenceinDWF">
+      <bpmn:incoming>SequenceFlow_0xzo10s</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0fdpxfq</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_L6BR_statusComp" name="status: Comp">
+      <bpmn:incoming>SequenceFlow_0fdpxfq</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0jmk6h6</bpmn:outgoing>
+    </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="EndEvent_L6BR">
+      <bpmn:incoming>SequenceFlow_0jmk6h6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="ServiceTask_L6BR_MapDWFreference" name="Map DWF reference">
+      <bpmn:incoming>SequenceFlow_1yuvftn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0z317v6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ServiceTask_L6BR_CopyDCrating" name="Call Base rating">
+      <bpmn:incoming>SequenceFlow_18v2hi5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0xzo10s</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:textAnnotation id="TextAnnotation_02ukohb">
+      <bpmn:text>create system map reference DWF/</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_00e7apq" sourceRef="ServiceTask_L6BR_MapDWFreference" targetRef="TextAnnotation_02ukohb" />
+    <bpmn:textAnnotation id="TextAnnotation_1uu3f40">
+      <bpmn:text>1. Copy DC rating
+2. Load DC base rating
+3. Adjust base limits
+4. Call DC base rating</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1q86yan" sourceRef="ServiceTask_L6BR_CopyDCrating" targetRef="TextAnnotation_1uu3f40" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_L6BaseRating">
+      <bpmndi:BPMNShape id="Participant_08ye562_di" bpmnElement="Participant_08ye562" isHorizontal="true">
+        <dc:Bounds x="129" y="110" width="931" height="279" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_02ukohb_di" bpmnElement="TextAnnotation_02ukohb">
+        <dc:Bounds x="341" y="149" width="100" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_0zxbil6_di" bpmnElement="StartEvent_L6BR">
+        <dc:Bounds x="181" y="251" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="173" y="294" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1cgyo53_di" bpmnElement="EndEvent_L6BR">
+        <dc:Bounds x="972" y="251" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_1x8x0ui_di" bpmnElement="IntermediateThrowEvent_L6BR_statusComp">
+        <dc:Bounds x="882" y="251" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="868" y="294" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IntermediateThrowEvent_1xod0i7_di" bpmnElement="IntermediateThrowEvent_L6BR_statusInit">
+        <dc:Bounds x="422" y="251" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="415" y="294" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_04hy4ce_di" bpmnElement="ServiceTask_L6BR_UpdateDCreferenceinDWF">
+        <dc:Bounds x="720" y="229" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_00e7apq_di" bpmnElement="Association_00e7apq">
+        <di:waypoint x="348" y="229" />
+        <di:waypoint x="367" y="203" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1yuvftn_di" bpmnElement="SequenceFlow_1yuvftn">
+        <di:waypoint x="217" y="269" />
+        <di:waypoint x="269" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0z317v6_di" bpmnElement="SequenceFlow_0z317v6">
+        <di:waypoint x="369" y="269" />
+        <di:waypoint x="422" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0xzo10s_di" bpmnElement="SequenceFlow_0xzo10s">
+        <di:waypoint x="630" y="269" />
+        <di:waypoint x="720" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0fdpxfq_di" bpmnElement="SequenceFlow_0fdpxfq">
+        <di:waypoint x="820" y="269" />
+        <di:waypoint x="882" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0jmk6h6_di" bpmnElement="SequenceFlow_0jmk6h6">
+        <di:waypoint x="918" y="269" />
+        <di:waypoint x="972" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_18v2hi5_di" bpmnElement="SequenceFlow_18v2hi5">
+        <di:waypoint x="458" y="269" />
+        <di:waypoint x="530" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1uu3f40_di" bpmnElement="TextAnnotation_1uu3f40">
+        <dc:Bounds x="640" y="130" width="190.40991902834008" height="66.1268556005398" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1q86yan_di" bpmnElement="Association_1q86yan">
+        <di:waypoint x="614" y="229" />
+        <di:waypoint x="643" y="196" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_13y8j83_di" bpmnElement="ServiceTask_L6BR_MapDWFreference">
+        <dc:Bounds x="269" y="229" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_00985ab_di" bpmnElement="ServiceTask_L6BR_CopyDCrating">
+        <dc:Bounds x="530" y="229" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
