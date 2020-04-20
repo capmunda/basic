@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class RestUtility {
 	public void triggerChild() {
-		String url = "http://localhost:8180/CamundaWorkflow/rest/engine/default/message";
+		String url = "http://localhost:8181/CamundaWorkflow/rest/engine/default/message";
 
 		// create an instance of RestTemplate
 		RestTemplate restTemplate = new RestTemplate();

@@ -1,13 +1,16 @@
 package com.cap.camunda.msone.demo;
 
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.logging.Logger;
 
 import org.camunda.bpm.client.ExternalTaskClient;
+import org.h2.tools.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import com.cap.camunda.msone.demo.utility.RestUtility;
 
@@ -51,6 +54,11 @@ public class DemoApplication {
 					}).open();
 
 		  }
+	
+	@Bean(initMethod = "start", destroyMethod = "stop")
+	public Server inMemoryH2DatabaseaServer() throws SQLException {
+	return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "8182");
+	}
 	}
 
 // 	@Override
