@@ -1,0 +1,25 @@
+demo port 8180
+demo-support 8181
+shared h2 db 8182
+
+Task 1 :Call activity with external task
+Start process Weather-Check in WeatherCheck.bpmn through cokpit
+child process 	view-forecast in printForecast.bpmn
+
+Task 2 : Message throw catch
+Start process 	printorder start in printorder_start.bpmn through postman
+
+POST http://localhost:8180/CamundaWorkflow/rest/engine/default/message
+{
+  "messageName" : "OrderPacked",
+  "businessKey" : "2",
+  "processVariables" : {
+    "orderid" : {"value" : "123", "type": "Long" }
+  }
+}
+
+child process print order in printorder_Messagedelegate.bpmn
+
+Task 3:  Spin out new process from external task
+Start process ExternalChildTrigger in  externalChildTrigger.bpmn(parent) 
+child process childProcess in childProcess.bpmn(child)
