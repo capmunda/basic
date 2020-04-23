@@ -23,3 +23,11 @@ child process print order in printorder_Messagedelegate.bpmn
 Task 3:  Spin out new process from external task
 Start process ExternalChildTrigger in  externalChildTrigger.bpmn(parent) 
 child process childProcess in childProcess.bpmn(child)
+
+
+Phase Two
+Task 1: Exclusive & inclusive trigger DMN
+1a)exclusive trigger
+Start process exclusive trigger in ExclusiveBPMNTrigger.bpmn
+1b)inclusive trigger
+Start process inclusive_trigger in  InclusiveBPMNTrigger.bpmns

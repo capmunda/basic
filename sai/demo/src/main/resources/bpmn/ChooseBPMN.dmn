@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_1dx8la5" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <decision id="DecideBeverage" name="Choose BPMN">
+    <extensionElements>
+      <biodi:bounds x="150" y="150" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Beverage">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>beverage</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1jilbca">
+          <text>"juice","shake"</text>
+        </inputValues>
+      </input>
+      <output id="output_1" label="bpmnid" name="bpmnid" typeRef="string" />
+      <rule id="DecisionRule_1resi1a">
+        <inputEntry id="UnaryTests_0rppffw">
+          <text>"juice"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ju0y9h">
+          <text>"juicemaker"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1y2i31z">
+        <inputEntry id="UnaryTests_16jehzs">
+          <text>"shake"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ig8lfj">
+          <text>"shakemixer"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
