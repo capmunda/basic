@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0p1qgyh" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <bpmn:process id="inclusive_trigger" name="inclusive_trigger" isExecutable="true">
+    <bpmn:startEvent id="Event_1pdqsks">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="beverage" label="beverage" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0qvoc4w</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Activity_0enboms" name="Call bpmn" calledElement="${bpmnid}">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="groovy">beverage = execution.getVariable('beverage')
+println "beverage chosen $beverage"
+def variables = [:]
+variables.put('beverage', beverage)
+ds = execution.getProcessEngineServices().getDecisionService()
+deb = ds.evaluateDecisionTableByKey('DecideBeverage',variables)
+bpmnid = deb.getSingleEntry()
+println "bpmnid chosen $bpmnid"
+execution.setVariable('bpmnid', bpmnid)</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qvoc4w</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b25xlk</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_1550l4p">
+      <bpmn:incoming>Flow_1b25xlk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0qvoc4w" sourceRef="Event_1pdqsks" targetRef="Activity_0enboms" />
+    <bpmn:sequenceFlow id="Flow_1b25xlk" sourceRef="Activity_0enboms" targetRef="Event_1550l4p" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="inclusive_trigger">
+      <bpmndi:BPMNEdge id="Flow_0qvoc4w_di" bpmnElement="Flow_0qvoc4w">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="300" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b25xlk_di" bpmnElement="Flow_1b25xlk">
+        <di:waypoint x="400" y="120" />
+        <di:waypoint x="565" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1pdqsks_di" bpmnElement="Event_1pdqsks">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1550l4p_di" bpmnElement="Event_1550l4p">
+        <dc:Bounds x="565" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0enboms_di" bpmnElement="Activity_0enboms">
+        <dc:Bounds x="300" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
