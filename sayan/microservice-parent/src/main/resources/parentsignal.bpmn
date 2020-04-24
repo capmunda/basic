@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1spkj7x" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:message id="Message_0runqqz" name="QuestionAsked1" />
+  <bpmn:message id="Message_00z756l" name="ConnectToNextDiagram" />
+  <bpmn:signal id="Signal_13vul05" name="SendSignal" />
+  <bpmn:signal id="Signal_1qcgazz" name="Signal_2hqf1at" />
+  <bpmn:process id="send-message" name="Send Message" isExecutable="true">
+    <bpmn:endEvent id="EndEvent_1t14mk4">
+      <bpmn:incoming>SequenceFlow_0nvb8nh</bpmn:incoming>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_0027kqn" signalRef="Signal_13vul05">
+        <bpmn:extensionElements>
+          <camunda:in variables="all" />
+        </bpmn:extensionElements>
+      </bpmn:signalEventDefinition>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Task_085vtto" name="enter the value">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="amount" label="Amount" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_13t8okj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0nvb8nh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="StartEvent_1svpkxy">
+      <bpmn:outgoing>SequenceFlow_13t8okj</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0nvb8nh" sourceRef="Task_085vtto" targetRef="EndEvent_1t14mk4" />
+    <bpmn:sequenceFlow id="SequenceFlow_13t8okj" sourceRef="StartEvent_1svpkxy" targetRef="Task_085vtto" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="send-message">
+      <bpmndi:BPMNEdge id="SequenceFlow_13t8okj_di" bpmnElement="SequenceFlow_13t8okj">
+        <di:waypoint x="168" y="100" />
+        <di:waypoint x="220" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nvb8nh_di" bpmnElement="SequenceFlow_0nvb8nh">
+        <di:waypoint x="320" y="100" />
+        <di:waypoint x="412" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_1svpkxy_di" bpmnElement="StartEvent_1svpkxy">
+        <dc:Bounds x="132" y="82" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0u6p1nw_di" bpmnElement="Task_085vtto">
+        <dc:Bounds x="220" y="60" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_02vwjq1_di" bpmnElement="EndEvent_1t14mk4">
+        <dc:Bounds x="412" y="82" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
