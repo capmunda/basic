@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0cqjql3" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <bpmn:process id="trigger_throw_exp" name="trigger_throw_exp" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1gkfl4g</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0kd4pej" name="trigger">
+      <bpmn:incoming>Flow_1gkfl4g</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1vifpwa" messageRef="Message_0fw91ln" camunda:expression="${execution.getProcessEngineServices().getRuntimeService().createMessageCorrelation(&#34;printorder&#34;).correlateStartMessage()}" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1gkfl4g" sourceRef="StartEvent_1" targetRef="Event_0kd4pej" />
+  </bpmn:process>
+  <bpmn:message id="Message_0fw91ln" name="printorder" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="trigger_throw_exp">
+      <bpmndi:BPMNEdge id="Flow_1gkfl4g_di" bpmnElement="Flow_1gkfl4g">
+        <di:waypoint x="215" y="97" />
+        <di:waypoint x="332" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="79" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1b1bxs7_di" bpmnElement="Event_0kd4pej">
+        <dc:Bounds x="332" y="79" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="335" y="122" width="32" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

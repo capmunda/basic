@@ -36,3 +36,7 @@ Task 2: Three tier tasks interaction
 Start process grandfather_demo in grandfather_demo.bpmn 
 parent: parent_1.bpmn
 child: grandchild_1.bpmn
+
+Task 3: Message throw event without  java delegate
+Start process trigger_throw_exp in trigger_throw.bpmn
+child: printorder_Messagedelegate.bpmn
