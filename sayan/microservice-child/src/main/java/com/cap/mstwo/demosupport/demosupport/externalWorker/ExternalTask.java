@@ -12,12 +12,11 @@ import com.cap.mstwo.demosupport.demosupport.entity.Account;
 public class ExternalTask {
 	static  ExternalTaskClient client;
 	long amount;
-	 Account account=new Account(amount);
-	 AccountDelegateExecution acde=new AccountDelegateExecution();
+	
 	 Map<Integer, Long> accountMap=new HashMap<>();
 	 
 	static {
-		client = ExternalTaskClient.create().baseUrl("http://localhost:8080/engine-rest")
+		client = ExternalTaskClient.create().baseUrl("http://localhost:8081/CamundaWorkflow/rest/engine/default")
 				.asyncResponseTimeout(10000) // long polling timeout
 				.build();
 	
@@ -39,22 +38,13 @@ public class ExternalTask {
 	.handler((externalTask, externalTaskService) -> {
 		 amount=externalTask.getVariable("amount");
 		 System.out.println("the sum of  " +amount+" has been debited successfully at " +new Timestamp(new Date().getTime()));
-		 account.setAmonut(amount);
-		 acde.setAmount(amount);
-		 accountMap.put(1, account.getAmonut());
 		 System.out.println(accountMap);
 		 externalTaskService.complete(externalTask);
 	}).open();
 	
 	}
 
-public  long getAmount() {
-	return amount;
-	
-}
-public  long setAmount(long amount) {
-	return this.amount=amount;
-}
+
 
 }
 

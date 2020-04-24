@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0k7k6j8" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="choose-account" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0l1y4sn</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0l1y4sn" sourceRef="StartEvent_1" targetRef="Task_06zkrdn" />
+    <bpmn:userTask id="Task_06zkrdn" name="Choose Account type">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="savings" label="Savings Account" type="boolean" />
+          <camunda:formField id="current" label="Current Account" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0l1y4sn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1eej1si</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_1a3pnmf">
+      <bpmn:incoming>SequenceFlow_1eej1si</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00nif6y</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1h2ozwk</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1eej1si" sourceRef="Task_06zkrdn" targetRef="ExclusiveGateway_1a3pnmf" />
+    <bpmn:task id="Task_1ytp1e7" name="Savings Account">
+      <bpmn:incoming>SequenceFlow_00nif6y</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0jfz0fm</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_00nif6y" name="Savings" sourceRef="ExclusiveGateway_1a3pnmf" targetRef="Task_1ytp1e7">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${savings}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:task id="Task_0m1wg3d" name="Current account">
+      <bpmn:incoming>SequenceFlow_1h2ozwk</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1vv33v5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_1h2ozwk" name="Current" sourceRef="ExclusiveGateway_1a3pnmf" targetRef="Task_0m1wg3d">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${current}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="EndEvent_0dv3tww">
+      <bpmn:incoming>SequenceFlow_0jfz0fm</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0jfz0fm" sourceRef="Task_1ytp1e7" targetRef="EndEvent_0dv3tww" />
+    <bpmn:endEvent id="EndEvent_028nyef">
+      <bpmn:incoming>SequenceFlow_1vv33v5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1vv33v5" sourceRef="Task_0m1wg3d" targetRef="EndEvent_028nyef" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="choose-account">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="209" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0l1y4sn_di" bpmnElement="SequenceFlow_0l1y4sn">
+        <di:waypoint x="215" y="227" />
+        <di:waypoint x="280" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1os2vho_di" bpmnElement="Task_06zkrdn">
+        <dc:Bounds x="280" y="187" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1a3pnmf_di" bpmnElement="ExclusiveGateway_1a3pnmf" isMarkerVisible="true">
+        <dc:Bounds x="445" y="202" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1eej1si_di" bpmnElement="SequenceFlow_1eej1si">
+        <di:waypoint x="380" y="227" />
+        <di:waypoint x="445" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_1ytp1e7_di" bpmnElement="Task_1ytp1e7">
+        <dc:Bounds x="510" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_00nif6y_di" bpmnElement="SequenceFlow_00nif6y">
+        <di:waypoint x="470" y="202" />
+        <di:waypoint x="470" y="120" />
+        <di:waypoint x="510" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="480" y="158" width="40" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0m1wg3d_di" bpmnElement="Task_0m1wg3d">
+        <dc:Bounds x="520" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1h2ozwk_di" bpmnElement="SequenceFlow_1h2ozwk">
+        <di:waypoint x="470" y="252" />
+        <di:waypoint x="470" y="310" />
+        <di:waypoint x="520" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="481" y="253" width="38" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0dv3tww_di" bpmnElement="EndEvent_0dv3tww">
+        <dc:Bounds x="682" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0jfz0fm_di" bpmnElement="SequenceFlow_0jfz0fm">
+        <di:waypoint x="610" y="120" />
+        <di:waypoint x="682" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_028nyef_di" bpmnElement="EndEvent_028nyef">
+        <dc:Bounds x="682" y="292" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1vv33v5_di" bpmnElement="SequenceFlow_1vv33v5">
+        <di:waypoint x="620" y="310" />
+        <di:waypoint x="682" y="310" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
