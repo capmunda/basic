@@ -1,16 +1,10 @@
 package com.cap.mstwo.demosupport.demosupport;
 
-import java.sql.Timestamp;
-import java.util.Date;
-import java.util.logging.Logger;
-
-import org.camunda.bpm.client.ExternalTaskClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.cap.mstwo.demosupport.demosupport.entity.Account;
-import com.cap.mstwo.demosupport.demosupport.externalWorker.AccountDelegateExecution;
 import com.cap.mstwo.demosupport.demosupport.externalWorker.ExternalTask;
+import com.cap.mstwo.demosupport.demosupport.externalWorker.ExternalTaskDemo;
 
 @SpringBootApplication
 public class AccountDemoApplication {
@@ -24,6 +18,10 @@ public class AccountDemoApplication {
 		
 		ExternalTask ext=new ExternalTask();
 		ext.printAmount();
+		
+		ExternalTaskDemo extd=new ExternalTaskDemo();
+		extd.addNumbers();
+		extd.multiplynumbers();
 		
 		/*ExternalTaskClient client = ExternalTaskClient.create().baseUrl("http://localhost:8080/engine-rest")
 				.asyncResponseTimeout(10000) // long polling timeout

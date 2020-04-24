@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1bjincn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="add-numbers" name="Add Numbers" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_039kbit</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_039kbit" sourceRef="StartEvent_1" targetRef="Task_08mofuw" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ltb31d" sourceRef="Task_0o7auoh" targetRef="Task_103f88u" />
+    <bpmn:endEvent id="EndEvent_183wdo2">
+      <bpmn:incoming>SequenceFlow_1dbkikm</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1sq4cv2" sourceRef="Task_103f88u" targetRef="Task_1mxw6y8" />
+    <bpmn:serviceTask id="Task_0o7auoh" name="Add both the numbers" camunda:type="external" camunda:topic="add-number">
+      <bpmn:incoming>SequenceFlow_1qzq3ib</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ltb31d</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_103f88u" name="multiplie the total 5 times" camunda:type="external" camunda:topic="miltiplie-total">
+      <bpmn:incoming>SequenceFlow_1ltb31d</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1sq4cv2</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1qzq3ib" sourceRef="Task_08mofuw" targetRef="Task_0o7auoh" />
+    <bpmn:sequenceFlow id="SequenceFlow_1dbkikm" sourceRef="Task_1mxw6y8" targetRef="EndEvent_183wdo2" />
+    <bpmn:userTask id="Task_08mofuw" name="Enter 2 numbers">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="number1" label="Number1" type="long" />
+          <camunda:formField id="number2" label="Number2" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_039kbit</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1qzq3ib</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Task_1mxw6y8" name="view">
+      <bpmn:incoming>SequenceFlow_1sq4cv2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1dbkikm</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="add-numbers">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="142" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_039kbit_di" bpmnElement="SequenceFlow_039kbit">
+        <di:waypoint x="178" y="117" />
+        <di:waypoint x="260" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ltb31d_di" bpmnElement="SequenceFlow_1ltb31d">
+        <di:waypoint x="560" y="117" />
+        <di:waypoint x="630" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_183wdo2_di" bpmnElement="EndEvent_183wdo2">
+        <dc:Bounds x="952" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1sq4cv2_di" bpmnElement="SequenceFlow_1sq4cv2">
+        <di:waypoint x="730" y="117" />
+        <di:waypoint x="800" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_11408h9_di" bpmnElement="Task_0o7auoh">
+        <dc:Bounds x="460" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0fizqv2_di" bpmnElement="Task_103f88u">
+        <dc:Bounds x="630" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1qzq3ib_di" bpmnElement="SequenceFlow_1qzq3ib">
+        <di:waypoint x="360" y="117" />
+        <di:waypoint x="460" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1dbkikm_di" bpmnElement="SequenceFlow_1dbkikm">
+        <di:waypoint x="900" y="117" />
+        <di:waypoint x="952" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_10gxh8o_di" bpmnElement="Task_08mofuw">
+        <dc:Bounds x="260" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1mhjqom_di" bpmnElement="Task_1mxw6y8">
+        <dc:Bounds x="800" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
