@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1sek2ep" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="Task3" name="task-3" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0zw9z3x</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0zw9z3x" sourceRef="StartEvent_1" targetRef="task3" />
+    <bpmn:sequenceFlow id="SequenceFlow_0d7ujoz" sourceRef="task3" targetRef="EndEvent_0eq35bt" />
+    <bpmn:endEvent id="EndEvent_0eq35bt">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="groovy">question=execution.getVariable('question')
+execution.getProcessEngineServices().getRuntimeService().createMessageCorrelation('SendMes').setVariable("question", question).correlate();</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0d7ujoz</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0sx2ipj" messageRef="Message_1a54g43" />
+    </bpmn:endEvent>
+    <bpmn:userTask id="task3" name="Write Something">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="question" label="Question" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0zw9z3x</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0d7ujoz</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:message id="Message_1a54g43" name="SendMes" />
+  <bpmn:message id="Message_1yan1kd" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Task3">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0zw9z3x_di" bpmnElement="SequenceFlow_0zw9z3x">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0d7ujoz_di" bpmnElement="SequenceFlow_0d7ujoz">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0c7swwt_di" bpmnElement="EndEvent_0eq35bt">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0ym559m_di" bpmnElement="task3">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
