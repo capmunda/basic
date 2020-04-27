@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1nnjejn" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <bpmn:process id="grandfather_demo" name="grandfather_demo" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0ht8tve</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Activity_0lrja1x" name="call parent" calledElement="parent_1">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:in source="gf_name" target="grandpa" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0re54zh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1i61cex</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_0ht8tve" sourceRef="StartEvent_1" targetRef="Activity_1fo9swg" />
+    <bpmn:sequenceFlow id="Flow_0re54zh" sourceRef="Activity_1fo9swg" targetRef="Activity_0lrja1x" />
+    <bpmn:userTask id="Activity_1fo9swg" name="granfather name">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="gf_name" label="gf_name" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ht8tve</bpmn:incoming>
+      <bpmn:outgoing>Flow_0re54zh</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:task id="Activity_041zmgs" name="print family">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="groovy">grandpa = execution.getVariable('grandpa')
+println "grandpa $grandpa"
+gf_name = execution.getVariable('gf_name')
+println "gf_name $gf_name"
+parent_name = execution.getVariable('parent_name')
+println "parent_name $parent_name"
+child = execution.getVariable('child')
+println "child $child"</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1i61cex</bpmn:incoming>
+      <bpmn:outgoing>Flow_0u2j1zk</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1i61cex" sourceRef="Activity_0lrja1x" targetRef="Activity_041zmgs" />
+    <bpmn:endEvent id="Event_0bkti2n">
+      <bpmn:incoming>Flow_0u2j1zk</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0u2j1zk" sourceRef="Activity_041zmgs" targetRef="Event_0bkti2n" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="grandfather_demo">
+      <bpmndi:BPMNEdge id="Flow_0ht8tve_di" bpmnElement="Flow_0ht8tve">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="240" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0re54zh_di" bpmnElement="Flow_0re54zh">
+        <di:waypoint x="340" y="117" />
+        <di:waypoint x="380" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i61cex_di" bpmnElement="Flow_1i61cex">
+        <di:waypoint x="480" y="127" />
+        <di:waypoint x="520" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0u2j1zk_di" bpmnElement="Flow_0u2j1zk">
+        <di:waypoint x="620" y="127" />
+        <di:waypoint x="662" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hq8924_di" bpmnElement="Activity_1fo9swg">
+        <dc:Bounds x="240" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lrja1x_di" bpmnElement="Activity_0lrja1x">
+        <dc:Bounds x="380" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_041zmgs_di" bpmnElement="Activity_041zmgs">
+        <dc:Bounds x="520" y="87" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0bkti2n_di" bpmnElement="Event_0bkti2n">
+        <dc:Bounds x="662" y="109" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

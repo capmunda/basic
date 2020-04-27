@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_172dw42" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <bpmn:process id="parent_1" name="parent_1" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="grandpa" label="grandpa" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1hhb4qd</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Activity_12gnrvr" name="call grandchild" calledElement="grandchild_1">
+      <bpmn:extensionElements>
+        <camunda:in variables="all" />
+        <camunda:out source="gc_name" target="child" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1hhb4qd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l400ul</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_0pe0n88">
+      <bpmn:incoming>Flow_1u0wcgj</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0l400ul" sourceRef="Activity_12gnrvr" targetRef="Activity_1oe59el" />
+    <bpmn:userTask id="Activity_1oe59el" name="parent name">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="parent_name" label="parent_name" type="string" />
+          <camunda:formField id="grandpa" label="grandpa" type="string" />
+          <camunda:formField id="child" label="child" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0l400ul</bpmn:incoming>
+      <bpmn:outgoing>Flow_1u0wcgj</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1hhb4qd" sourceRef="StartEvent_1" targetRef="Activity_12gnrvr" />
+    <bpmn:sequenceFlow id="Flow_1u0wcgj" sourceRef="Activity_1oe59el" targetRef="Event_0pe0n88" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="parent_1">
+      <bpmndi:BPMNEdge id="Flow_0l400ul_di" bpmnElement="Flow_0l400ul">
+        <di:waypoint x="420" y="120" />
+        <di:waypoint x="530" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1hhb4qd_di" bpmnElement="Flow_1hhb4qd">
+        <di:waypoint x="215" y="127" />
+        <di:waypoint x="268" y="127" />
+        <di:waypoint x="268" y="120" />
+        <di:waypoint x="320" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1u0wcgj_di" bpmnElement="Flow_1u0wcgj">
+        <di:waypoint x="630" y="120" />
+        <di:waypoint x="671" y="120" />
+        <di:waypoint x="671" y="110" />
+        <di:waypoint x="712" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="109" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1b24uc1_di" bpmnElement="Activity_12gnrvr">
+        <dc:Bounds x="320" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z2nmw3_di" bpmnElement="Activity_1oe59el">
+        <dc:Bounds x="530" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pe0n88_di" bpmnElement="Event_0pe0n88">
+        <dc:Bounds x="712" y="92" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
