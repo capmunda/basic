@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1ntgkld" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="Coach-management" name="Coach-Management" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0uba98x</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_021za2i" signalRef="Signal_0wahwln" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0uba98x" sourceRef="StartEvent_1" targetRef="Task_0uq64ts" />
+    <bpmn:serviceTask id="Task_0uq64ts" name="Coach calculates the required run-rate" camunda:type="external" camunda:topic="required-runrate">
+      <bpmn:incoming>SequenceFlow_0uba98x</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_177rx3i</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_177rx3i" sourceRef="Task_0uq64ts" targetRef="Task_0kg9rcz" />
+    <bpmn:endEvent id="EndEvent_033tvzb">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="groovy">rpo=execution.getVariable('Required run rate per over')
+execution.getProcessEngineServices().getRuntimeService().createMessageCorrelation('message-player').setVariable("Required run rate per over", rpo).correlate();</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_07qk1ac</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1ri12rc" messageRef="Message_1ejoga3" />
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_07qk1ac" sourceRef="Task_0kg9rcz" targetRef="EndEvent_033tvzb" />
+    <bpmn:userTask id="Task_0kg9rcz" name="see the runrate">
+      <bpmn:incoming>SequenceFlow_177rx3i</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_07qk1ac</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:signal id="Signal_0wahwln" name="signal-to-pavilion" />
+  <bpmn:message id="Message_1ejoga3" name="message-player" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Coach-management">
+      <bpmndi:BPMNShape id="StartEvent_1h84pi1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0uba98x_di" bpmnElement="SequenceFlow_0uba98x">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1xs7mn1_di" bpmnElement="Task_0uq64ts">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_177rx3i_di" bpmnElement="SequenceFlow_177rx3i">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="420" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1168gon_di" bpmnElement="EndEvent_033tvzb">
+        <dc:Bounds x="572" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_07qk1ac_di" bpmnElement="SequenceFlow_07qk1ac">
+        <di:waypoint x="520" y="117" />
+        <di:waypoint x="572" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1lff43i_di" bpmnElement="Task_0kg9rcz">
+        <dc:Bounds x="420" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
