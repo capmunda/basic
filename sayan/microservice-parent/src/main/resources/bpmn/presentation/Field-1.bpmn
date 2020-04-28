@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0xved33" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="field" name="Enters into Field" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Virat Kohli Enters the field">
+      <bpmn:outgoing>SequenceFlow_1ufc97z</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1ufc97z" sourceRef="StartEvent_1" targetRef="Task_0njhue3" />
+    <bpmn:sequenceFlow id="SequenceFlow_0fuzeja" sourceRef="Task_0njhue3" targetRef="Task_0n9wdh0" />
+    <bpmn:sequenceFlow id="SequenceFlow_0o57h07" sourceRef="Task_0n9wdh0" targetRef="Task_00gwisy" />
+    <bpmn:endEvent id="EndEvent_0e2hmya">
+      <bpmn:incoming>SequenceFlow_0a9kpan</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0a9kpan" sourceRef="Task_00gwisy" targetRef="EndEvent_0e2hmya" />
+    <bpmn:userTask id="Task_0njhue3" name="Sees the Cricket Match Format">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="match" label="Match-Format" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1ufc97z</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0fuzeja</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:businessRuleTask id="Task_0n9wdh0" name="Choose the batting style" camunda:resultVariable="bpmnid" camunda:decisionRef="match-format" camunda:mapDecisionResult="singleEntry">
+      <bpmn:incoming>SequenceFlow_0fuzeja</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0o57h07</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:callActivity id="Task_00gwisy" name="Plays accoording to the format" calledElement="${bpmnid}">
+      <bpmn:extensionElements>
+        <camunda:in businessKey="#{execution.processBusinessKey}" />
+        <camunda:in variables="all" />
+        <camunda:out variables="all" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0o57h07</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0a9kpan</bpmn:outgoing>
+    </bpmn:callActivity>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="field">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="142" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ufc97z_di" bpmnElement="SequenceFlow_1ufc97z">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0fuzeja_di" bpmnElement="SequenceFlow_0fuzeja">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0o57h07_di" bpmnElement="SequenceFlow_0o57h07">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0e2hmya_di" bpmnElement="EndEvent_0e2hmya">
+        <dc:Bounds x="752" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0a9kpan_di" bpmnElement="SequenceFlow_0a9kpan">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="752" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0582ysp_di" bpmnElement="Task_0njhue3">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BusinessRuleTask_1i2u5rr_di" bpmnElement="Task_0n9wdh0">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CallActivity_10fxzvh_di" bpmnElement="Task_00gwisy">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

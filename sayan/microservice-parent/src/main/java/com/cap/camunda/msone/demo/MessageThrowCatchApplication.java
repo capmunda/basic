@@ -7,11 +7,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.cap.mstwo.demosupport.demosupport.externalWorker.StrikeRate;
+
+
+
 @SpringBootApplication
 public class MessageThrowCatchApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MessageThrowCatchApplication.class, args);
+		
+		StrikeRate match=new StrikeRate();
+		match.countTestRuns();
+		match.countT20Balls();
+		match.remainingRuns();
+		match.requiredRunrate();
+	
 		
 	}
 	@Bean(initMethod = "start", destroyMethod = "stop")
