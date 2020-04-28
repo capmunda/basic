@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0ph04ff" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <bpmn:process id="receive-message" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_164buqm</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0wlxn75" messageRef="Message_1e7sqg1" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_164buqm" sourceRef="StartEvent_1" targetRef="Task_1mgrqpy" />
+    <bpmn:endEvent id="EndEvent_0ds8i4o">
+      <bpmn:incoming>SequenceFlow_17lonbt</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_17lonbt" sourceRef="Task_1mgrqpy" targetRef="EndEvent_0ds8i4o" />
+    <bpmn:userTask id="Task_1mgrqpy" name="view">
+      <bpmn:incoming>SequenceFlow_164buqm</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17lonbt</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmn:message id="Message_1e7sqg1" name="SendMes" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="receive-message">
+      <bpmndi:BPMNShape id="StartEvent_0kov3do_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_164buqm_di" bpmnElement="SequenceFlow_164buqm">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_0ds8i4o_di" bpmnElement="EndEvent_0ds8i4o">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_17lonbt_di" bpmnElement="SequenceFlow_17lonbt">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0fbg8pl_di" bpmnElement="Task_1mgrqpy">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
