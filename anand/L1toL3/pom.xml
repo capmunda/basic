@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cap.camunda.msone</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>L1-L3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>L1-L3</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <scope>runtime</scope>
+      <!-- <scope>runtime</scope> -->
     </dependency>
 	   <dependency>
       <groupId>org.camunda.bpm.springboot</groupId>
