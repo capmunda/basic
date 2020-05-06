@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_15qp2og" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <decision id="remaining-runs" name="Runs Remaining">
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="Runs remaining">
+        <inputExpression id="inputExpression_1" typeRef="long">
+          <text>runs</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_005t43t" label="Wickets">
+        <inputExpression id="LiteralExpression_0ypuv5a" typeRef="long">
+          <text>wickets</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_03oj6yc" label="Balls Remaining">
+        <inputExpression id="LiteralExpression_10mk8li" typeRef="long">
+          <text>balls</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Playing style" name="style" typeRef="string" />
+      <rule id="DecisionRule_0f6nurh">
+        <inputEntry id="UnaryTests_10orgos">
+          <text>&lt;200</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kek3mp">
+          <text>&lt;=2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rp3qew">
+          <text>[150..240]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1401q0g">
+          <text>"aggresive"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0cl45zg">
+        <inputEntry id="UnaryTests_1g9b8zc">
+          <text>&gt;=200</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r65hab">
+          <text>&gt;3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e9wyyx">
+          <text>&lt;=200</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0yvi14d">
+          <text>"moderately"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0dctdd8">
+        <inputEntry id="UnaryTests_166j6za">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05vg2eg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_004z3gf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kt9g6j">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1a3iuw9">
+        <inputEntry id="UnaryTests_0zgluom">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yxt7f0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01lhf2j">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08dtj7a">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

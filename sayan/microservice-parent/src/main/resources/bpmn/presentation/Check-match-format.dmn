@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_16daudz" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.5.0">
+  <decision id="match-format" name="Decision 1">
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="Match">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text>match</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="bpmnid" name="bpmnid" typeRef="string" />
+      <rule id="DecisionRule_01i22t8">
+        <inputEntry id="UnaryTests_1f2mkrc">
+          <text>"test"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jbphrd">
+          <text>"test-format"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07i4b8r">
+        <inputEntry id="UnaryTests_1o3sn82">
+          <text>"odi"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wuvvca">
+          <text>"odi-format"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15733xu">
+        <inputEntry id="UnaryTests_0z6k5hb">
+          <text>"t20"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_061wjbq">
+          <text>"t20-format"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0g9w416">
+        <inputEntry id="UnaryTests_0s0ktkr">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_12pviyk">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

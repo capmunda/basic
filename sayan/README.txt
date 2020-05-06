@@ -1,6 +1,14 @@
 microservice-parent port 8081
 microservice-child port 8082
+
+username :say
+password: say
+
 shared h2 db 8083
+
+username :sa
+password: password
+
 
 Task 1 :Call activity with external task
 Start process "Account-parent" from cockpit
@@ -44,3 +52,14 @@ Signal Throw catch
  
 Start Parent-signal from tasklist and enter a value
 It will redirect to the child process receive-signal 
+
+
+************Presentation**************
+
+-> Go to Microservice-parent and run the application at localhost:8081/CamundaWorkflow
+-> start the process "enters into field"
+->Choose the format
+-> in Odi 
+	1. choose runs >200 and wickets>3 and balls<200
+	
+	2.  choose runs <200 and wickets<=2 and balls[150..240]
