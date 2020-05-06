@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Reservation_Table" name="Reservation_Table" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <decision id="table" name="Reservation table">
+    <extensionElements>
+      <biodi:bounds x="323" y="170" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="DecisionTable_040j91i">
+      <input id="InputClause_0bbq1z8" label="Type" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_1iwaqcz" typeRef="string">
+          <text>type</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0pcbpc9" label="How many guests" camunda:inputVariable="">
+        <inputExpression id="LiteralExpression_1uu3xe6" typeRef="integer">
+          <text>guestCount</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_0lfar1z" label="Table" name="table" typeRef="string" />
+      <rule id="row-884555325-1">
+        <description></description>
+        <inputEntry id="UnaryTests_0cy7usy">
+          <text>not("breakfast", "lunch", "dinner")</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ww352f">
+          <text>&gt;= 0</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07xyqqp">
+          <text>"Standing Table"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-506282952-1">
+        <inputEntry id="UnaryTests_06z2ju4">
+          <text>"breakfast"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ph5qbt">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sntjhd">
+          <text>"Standing Table"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-506282952-2">
+        <inputEntry id="UnaryTests_0o5o0mm">
+          <text>"lunch"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0rtyr8x">
+          <text>&lt;= 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15nybba">
+          <text>"Buffet"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-506282952-3">
+        <inputEntry id="UnaryTests_1f00omt">
+          <text>"dinner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03yxt5d">
+          <text>&lt;= 4</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ki86jo">
+          <text>"Buffet"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-506282952-4">
+        <description></description>
+        <inputEntry id="UnaryTests_18csep1">
+          <text>"dinner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lt4o3q">
+          <text>[5..8]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h969t1">
+          <text>"Large Table"</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-506282952-5">
+        <description></description>
+        <inputEntry id="UnaryTests_0cp9scy">
+          <text>"breakfast", "lunch", "dinner"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1to1xxg">
+          <text>&gt; 8</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fjt4uo">
+          <text>"Private room"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

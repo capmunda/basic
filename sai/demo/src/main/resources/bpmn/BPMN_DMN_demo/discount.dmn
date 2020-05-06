@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="discount_percentage" name="discount_percentage" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <decision id="discount" name="discount">
+    <extensionElements>
+      <biodi:bounds x="160" y="80" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Corporate">
+        <inputExpression id="inputExpression_1" typeRef="boolean">
+          <text>corporate</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_17idizz" label="Bill amount">
+        <inputExpression id="LiteralExpression_19nt5f4" typeRef="integer">
+          <text>amount</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Percentage" name="percentage" typeRef="integer" />
+      <rule id="DecisionRule_0qszxfl">
+        <inputEntry id="UnaryTests_15g0epp">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vh3ijr">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ukkio1">
+          <text>15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xo1h5i">
+        <inputEntry id="UnaryTests_1whfm7w">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cmuha5">
+          <text>&gt;1500</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ejs3lb">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1mg1797">
+        <inputEntry id="UnaryTests_0gpn8pj">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bsc60b">
+          <text>&gt;1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mfwax4">
+          <text>5</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
