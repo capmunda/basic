@@ -40,3 +40,15 @@ child: grandchild_1.bpmn
 Task 3: Message throw event without  java delegate
 Start process trigger_throw_exp in trigger_throw.bpmn
 child: printorder_Messagedelegate.bpmn
+
+Phase 3
+Task  1: BPMN_DMN demo
+Start process dmn_Integration_Demo in BPMN_DMN_Demo.bpmn
+
+Task 2: Camunda Logging 
+Uncomment properties in related to logging application.properties 
+Can  change log level DEBUG, TRACE
+
+Task 3 
+Set  email id & password in Keywords.java
+Set email.demo=true in application.properties

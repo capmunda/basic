@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_0gyy0a1" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.7.2">
+  <decision id="complementary" name="complementary">
+    <extensionElements>
+      <biodi:bounds x="150" y="80" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="Bill  Amount">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>amount</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Starter" name="starter" typeRef="string" />
+      <output id="OutputClause_03xe1i4" label="Voucher" name="voucher" typeRef="string" />
+      <rule id="DecisionRule_0uuzzjj">
+        <inputEntry id="UnaryTests_0roogm9">
+          <text>&gt;=2000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1msdzpq">
+          <text>"Mocktail"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0kei80n">
+          <text>"Buy 2 get 1"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_179w7ne">
+        <inputEntry id="UnaryTests_06m50om">
+          <text>&lt;2000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11ecxve">
+          <text>"soup"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_171zoa5">
+          <text>"10 percent off on next visit"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>

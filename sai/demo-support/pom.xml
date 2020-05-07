@@ -104,7 +104,7 @@
 			<groupId>org.camunda.bpm</groupId>
 			<artifactId>camunda-external-task-client</artifactId>
 			<version>1.2.0</version>
-		</dependency>
+</dependency>
 	</dependencies>
 
 	<build>
