@@ -49,6 +49,13 @@ Task 2: Camunda Logging
 Uncomment properties in related to logging application.properties 
 Can  change log level DEBUG, TRACE
 
-Task 3 
+Task 3 Trigger workflow from email subject
 Set  email id & password in Keywords.java
 Set email.demo=true in application.properties
+
+Task 4 Perform user task using email
+Set email.demo=true in application.properties
+Set spring.mail.username=, spring.mail.password= of sender in application.properties
+Set sendTo email id & password of reciever in Keywords.java
+Start process Email_Appl_Status in Email_Appl_Status.bpmn
+
