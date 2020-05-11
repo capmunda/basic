@@ -8,4 +8,10 @@ public  class Keywords {
 	// email password
 	
 	public static final String password = "";
+	
+	public static final String subject = "Application Status";
+	
+	public static final String sendTo = "";
+	
+	public static final String replyFormat = "APPID=";
 }

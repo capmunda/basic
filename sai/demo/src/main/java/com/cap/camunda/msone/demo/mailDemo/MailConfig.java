@@ -9,6 +9,7 @@ import javax.mail.search.FlagTerm;
 import javax.mail.search.SearchTerm;
 import javax.mail.search.SubjectTerm;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ import org.springframework.integration.mapping.HeaderMapper;
 import org.springframework.integration.scheduling.PollerMetadata;
 import org.springframework.scheduling.support.PeriodicTrigger;
 
+import com.camunda.delegates.EmailTaskDelegate;
 import com.cap.camunda.msone.demo.utility.Keywords;
 
 @Configuration
@@ -39,7 +41,7 @@ public class MailConfig {
 	   @Bean
 	    public ImapMailReceiver receiver()  {
 	    	SearchTermStrategy searchTermStrategy = (supportedFlags, folder) -> {
-	            SearchTerm search = new AndTerm(new SubjectTerm("Trigger workflow*"),
+	            SearchTerm search = new AndTerm(new SubjectTerm("*"+Keywords.subject+"*"),
 	                    new FlagTerm(new Flags(Flags.Flag.SEEN), false));
 	            return search;
 	        };
@@ -48,7 +50,8 @@ public class MailConfig {
 	        ImapMailReceiver i = new ImapMailReceiver(loc);
 	        i.setJavaMailProperties(javaMailProperties());
 	        i.setSearchTermStrategy(searchTermStrategy);
-	      
+	      i.setAutoCloseFolder(false);
+	      i.setSimpleContent(true);
 	        
 	        //i.waitForNewMessages();
 	        return i;
@@ -100,5 +103,11 @@ public Properties javaMailProperties() {
 
     return javaMailProperties;
 	
+}
+//Spring Managed TAsk Delegate
+@Bean
+public EmailTaskDelegate emailTaskDelegate() {
+	return new EmailTaskDelegate();
+			
 }
 }
