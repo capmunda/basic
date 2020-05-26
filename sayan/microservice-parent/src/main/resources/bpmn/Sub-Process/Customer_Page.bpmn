@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1bn0cv0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.3">
+  <bpmn:process id="customer_page" name="Customer Page" isExecutable="true">
+    <bpmn:startEvent id="Event_00o5mdx">
+      <bpmn:outgoing>Flow_0lscwp2</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0lscwp2" sourceRef="Event_00o5mdx" targetRef="Activity_0ii3wkr" />
+    <bpmn:endEvent id="Event_0pktrn4">
+      <bpmn:incoming>Flow_11oo33j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_11oo33j" sourceRef="Activity_0ii3wkr" targetRef="Event_0pktrn4" />
+    <bpmn:userTask id="Activity_0ii3wkr" name="Enter Customer Details">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="name" label="Full Name" type="string">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+              <camunda:constraint name="maxlength" config="26" />
+              <camunda:constraint name="minlength" config="3" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="email" label="Email Id" type="string" />
+          <camunda:formField id="mobileNo" label="Contact Number" type="long">
+            <camunda:validation>
+              <camunda:constraint name="required" />
+            </camunda:validation>
+          </camunda:formField>
+          <camunda:formField id="dob" label="Date Of Birth" type="date" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lscwp2</bpmn:incoming>
+      <bpmn:outgoing>Flow_11oo33j</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="customer_page">
+      <bpmndi:BPMNEdge id="Flow_0lscwp2_di" bpmnElement="Flow_0lscwp2">
+        <di:waypoint x="188" y="160" />
+        <di:waypoint x="240" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11oo33j_di" bpmnElement="Flow_11oo33j">
+        <di:waypoint x="340" y="160" />
+        <di:waypoint x="392" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1gv1mi3_di" bpmnElement="Event_00o5mdx">
+        <dc:Bounds x="152" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0pktrn4_di" bpmnElement="Event_0pktrn4">
+        <dc:Bounds x="392" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1l557pi_di" bpmnElement="Activity_0ii3wkr">
+        <dc:Bounds x="240" y="120" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
