@@ -4,14 +4,14 @@
     <bpmn:startEvent id="StartEvent_1" name="Virat Kohli Enters the field">
       <bpmn:outgoing>SequenceFlow_1ufc97z</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1ufc97z" sourceRef="StartEvent_1" targetRef="Task_0njhue3" />
-    <bpmn:sequenceFlow id="SequenceFlow_0fuzeja" sourceRef="Task_0njhue3" targetRef="Task_0n9wdh0" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ufc97z" sourceRef="StartEvent_1" targetRef="cricket-format" />
+    <bpmn:sequenceFlow id="SequenceFlow_0fuzeja" sourceRef="cricket-format" targetRef="Task_0n9wdh0" />
     <bpmn:sequenceFlow id="SequenceFlow_0o57h07" sourceRef="Task_0n9wdh0" targetRef="Task_00gwisy" />
     <bpmn:endEvent id="EndEvent_0e2hmya">
       <bpmn:incoming>SequenceFlow_0a9kpan</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0a9kpan" sourceRef="Task_00gwisy" targetRef="EndEvent_0e2hmya" />
-    <bpmn:userTask id="Task_0njhue3" name="Sees the Cricket Match Format">
+    <bpmn:userTask id="cricket-format" name="Sees the Cricket Match Format">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="match" label="Match-Format" type="string" />
@@ -61,7 +61,7 @@
         <di:waypoint x="690" y="117" />
         <di:waypoint x="752" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0582ysp_di" bpmnElement="Task_0njhue3">
+      <bpmndi:BPMNShape id="UserTask_0582ysp_di" bpmnElement="cricket-format">
         <dc:Bounds x="270" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BusinessRuleTask_1i2u5rr_di" bpmnElement="Task_0n9wdh0">
