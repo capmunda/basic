@@ -8,17 +8,19 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 public class SendMessageDelegate implements JavaDelegate {
 	private final Logger LOGGER = Logger.getLogger(SendMessageDelegate.class.getName());
-	DelegateExecution execution;
+	SearchingDelegate search=new SearchingDelegate();
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		
 		LOGGER.info(execution.getBusinessKey());
-		this.execution=execution;
+		String businessKey=execution.getBusinessKey();
+		//System.out.println(businessKey);
+		//System.out.println(search.childProceeBusinessKey);
 		
 		  String task=(String) execution.getVariable("editTask");
 		  
 		  execution.getProcessEngineServices().getRuntimeService().
-		  createMessageCorrelation("EditTask").setVariable("editTask",
+		  createMessageCorrelation("EditTask").processInstanceBusinessKey(businessKey).setVariable("editTask",
 		  "how will u get the business key").correlate();	 	
 	}
 }

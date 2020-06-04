@@ -16,7 +16,7 @@ public class StartingDelagate implements JavaDelegate {
 	  public void execute(DelegateExecution execution) throws Exception {
 		  ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
 		  
-		 String childProceeBusinessKey="XYZ_"+execution.getProcessInstanceId();
+		 String childProceeBusinessKey="XYZ_"+execution.getBusinessKey();
 		 
 			 processEngine.getRuntimeService().startProcessInstanceByKey("child_process", childProceeBusinessKey);
 		 	
@@ -28,8 +28,8 @@ public class StartingDelagate implements JavaDelegate {
 	            + ", businessKey=" + execution.getProcessBusinessKey()
 	            + ", executionId=" + execution.getId()
 	            + ", tenantId=" + execution.getTenantId()
-	            + ", tenantId=" + processEngine.getName()
-	            + " \n\n");
+	            + ", \n\n");
+	//    System.out.println(processEngine.getRepositoryService());
 	    
 	  }
 
